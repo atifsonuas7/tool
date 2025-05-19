@@ -1,167 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Free online image compressor and converter tool. Reduce image file size and optimize for web with adjustable compression level.">
-  <meta name="keywords" content="Image Converter, Image Compressor, Optimize Images, Online Tool, JPEG PNG Compressor">
-  <meta name="ATIF SONU" content="Your Name or Brand">
-  <title>Image Converter & Compressor Tool - Optimize Images Online</title>
-  
-  <!-- Favicon (Optional) -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f4f4f4;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image converter tool. Convert and compress JPG, PNG, WEBP images to different formats with adjustable quality settings.">
+    <meta name="keywords" content="image converter, image compressor, jpg to png, png to webp, optimize images, reduce image size">
+    <meta name="ATIF SONU" content="Image Converter Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Free Online Image Converter Tool">
+    <meta property="og:description" content="Convert and compress images to different formats with adjustable quality settings.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/image-converter">
+    <meta property="og:image" content="https://yourwebsite.com/images/converter-preview.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free Online Image Converter Tool">
+    <meta name="twitter:description" content="Convert and compress images to different formats with adjustable quality settings.">
+    <meta name="twitter:image" content="https://yourwebsite.com/images/converter-preview.jpg">
+    
+    <title>Image Converter Tool | Optimize & Convert JPG, PNG, WEBP</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/image-converter">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Image Converter Tool",
+      "url": "https://yourwebsite.com/image-converter",
+      "description": "Free online tool to convert and compress images between different formats.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any"
     }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 1.8rem;
-    }
-
-    .uploader {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    input[type="file"] {
-      margin: 10px 0;
-    }
-
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 20px 0;
-    }
-
-    .controls label {
-      margin-right: 10px;
-    }
-
-    canvas {
-      max-width: 100%;
-      margin: 20px 0;
-    }
-
-    .download-btn {
-      display: block;
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .ads {
-      margin: 30px 0;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      .controls {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
-
-  <!-- Google AdSense (replace `ca-pub-xxxxxxxxxxxxxxxx` with your AdSense publisher ID) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"
-    crossorigin="anonymous"></script>
+    </script>
+    
+    <style>
+        :root {
+            --primary-color: #4285f4;
+            --secondary-color: #34a853;
+            --accent-color: #ea4335;
+            --light-gray: #f5f5f5;
+            --dark-gray: #333;
+            --medium-gray: #757575;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #f9f9f9;
+            padding: 0;
+            margin: 0;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .converter-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        h2 {
+            color: var(--medium-gray);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--medium-gray);
+            border-radius: var(--border-radius);
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: var(--light-gray);
+        }
+        
+        .upload-area.active {
+            border-color: var(--secondary-color);
+            background-color: rgba(52, 168, 83, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .options-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .option-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+        }
+        
+        select, input[type="range"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+            padding: 0;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .range-value {
+            display: inline-block;
+            width: 40px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        
+        button:hover {
+            background-color: #3367d6;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .result-container {
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .image-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .preview-box {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .preview-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .file-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+        
+        .download-btn {
+            background-color: var(--secondary-color);
+            margin-top: 1rem;
+        }
+        
+        .download-btn:hover {
+            background-color: #2d9249;
+        }
+        
+        .ad-container {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            .options-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .upload-area {
+                padding: 2rem 1rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Image Converter & Compressor</h1>
-    <div class="ads">
-      <!-- AdSense Ad Unit Placeholder -->
-      <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-app-pub-7019379995200041/9763918720"
-          data-ad-slot="1234567890"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <div class="uploader">
-      <input type="file" id="imageInput" accept="image/png, image/jpeg" />
-      <div class="controls">
-        <label for="quality">Compression Level:</label>
-        <input type="range" id="quality" min="0.1" max="1" step="0.1" value="0.8" />
-        <span id="qualityValue">0.8</span>
-      </div>
-    </div>
-
-    <canvas id="canvas" style="display:none;"></canvas>
-    <div class="download-btn">
-      <a id="downloadLink" href="#" download="compressed-image.jpg" style="display:none;">Download Optimized Image</a>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">Image<span>Converter</span></a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <nav class="breadcrumb">
+            <a href="/">Home</a> &gt; <span>Image Converter</span>
+        </nav>
+        
+        <!-- Top Ad Banner -->
+        <div class="ad-container">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7019379995200041/9763918720"
+                crossorigin="anonymous"></script>
+            <!-- Image Converter Top Banner -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-app-pub-7019379995200041/9763918720"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="converter-container">
+            <h1>Image Converter Tool</h1>
+            <p>Convert and compress images to different formats with adjustable quality settings. Supports JPG, PNG, WEBP, and more.</p>
+            
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <h2>Drag & Drop Your Image Here</h2>
+                <p>or click to browse files</p>
+                <input type="file" id="fileInput" class="file-input" accept="image/*">
+            </div>
+            
+            <div class="options-container">
+                <div class="option-group">
+                    <label for="outputFormat">Output Format</label>
+                    <select id="outputFormat">
+                        <option value="jpeg">JPEG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WEBP</option>
+                    </select>
+                </div>
+                
+                <div class="option-group">
+                    <label for="compressionLevel">Compression Level: <span id="compressionValue" class="range-value">70</span>%</label>
+                    <input type="range" id="compressionLevel" min="10" max="95" value="70" step="5">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+                        <span>Smaller File</span>
+                        <span>Better Quality</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="convertBtn" disabled>Convert Image</button>
+            <div class="spinner" id="spinner"></div>
+            
+            <div class="result-container" id="resultContainer">
+                <h2>Conversion Results</h2>
+                <div class="image-preview">
+                    <div class="preview-box">
+                        <h3>Original Image</h3>
+                        <img id="originalPreview" class="preview-img" src="" alt="Original image preview">
+                        <div class="file-info" id="originalInfo"></div>
+                    </div>
+                    <div class="preview-box">
+                        <h3>Converted Image</h3>
+                        <img id="convertedPreview" class="preview-img" src="" alt="Converted image preview">
+                        <div class="file-info" id="convertedInfo"></div>
+                        <button class="download-btn" id="downloadBtn">Download Converted Image</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Middle Ad Banner -->
+        <div class="ad-container">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7019379995200041/5699491147"
+                crossorigin="anonymous"></script>
+            <!-- Image Converter Middle Rectangle -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-app-pub-7019379995200041/5699491147"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="converter-container">
+            <h2>How to Use the Image Converter</h2>
+            <ol>
+                <li>Drag and drop your image into the upload area or click to select a file</li>
+                <li>Choose your desired output format (JPEG, PNG, or WEBP)</li>
+                <li>Adjust the compression level to balance quality and file size</li>
+                <li>Click "Convert Image" to process your image</li>
+                <li>Download your converted image when the process is complete</li>
+            </ol>
+            
+            <h2>Supported Image Formats</h2>
+            <ul>
+                <li><strong>JPEG</strong> - Best for photographs and complex images</li>
+                <li><strong>PNG</strong> - Best for images with transparency</li>
+                <li><strong>WEBP</strong> - Modern format with excellent compression</li>
+            </ul>
+            
+            <h2>Why Use Our Image Converter?</h2>
+            <p>Our tool provides a simple, fast way to convert images between different formats while maintaining quality. The adjustable compression lets you find the perfect balance between image quality and file size, which is essential for website optimization, email attachments, and social media sharing.</p>
+        </div>
+    </main>
+    
+    <!-- Bottom Ad Banner -->
+    <div class="container">
+        <div class="ad-container">
+            <!-- Replace with your Google AdSense code -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7019379995200041/9656941665"
+                crossorigin="anonymous"></script>
+            <!-- Image Converter Footer Banner -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-app-pub-7019379995200041/9656941665"
+                data-ad-slot="YOUR_AD_SLOT_ID"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
     
-    <div class="ads">
-      <!-- Another Ad Unit (bottom) -->
-      <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-app-pub-7019379995200041/9656941665"
-          data-ad-slot="0987654321"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-  </div>
-
-  <script>
-    const imageInput = document.getElementById('imageInput');
-    const qualitySlider = document.getElementById('quality');
-    const qualityValue = document.getElementById('qualityValue');
-    const canvas = document.getElementById('canvas');
-    const downloadLink = document.getElementById('downloadLink');
-
-    qualitySlider.addEventListener('input', () => {
-      qualityValue.textContent = qualitySlider.value;
-    });
-
-    imageInput.addEventListener('change', function () {
-      const file = this.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const img = new Image();
-        img.onload = function () {
-          canvas.style.display = 'block';
-          const ctx = canvas.getContext('2d');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.drawImage(img, 0, 0);
-
-          const quality = parseFloat(qualitySlider.value);
-          canvas.toBlob(
-            (blob) => {
-              const url = URL.createObjectURL(blob);
-              downloadLink.href = url;
-              downloadLink.style.display = 'inline-block';
-            },
-            'image/jpeg',
-            quality
-          );
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    });
-  </script>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/contact">Contact Us</a>
+                <a href="/about">About</a>
+            </div>
+            <p class="copyright">© 2023 Image Converter Tool. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+            const outputFormat = document.getElementById('outputFormat');
+            const compressionLevel = document.getElementById('compressionLevel');
+            const compressionValue = document.getElementById('compressionValue');
+            const convertBtn = document.getElementById('convertBtn');
+            const spinner = document.getElementById('spinner');
+            const resultContainer = document.getElementById('resultContainer');
+            const originalPreview = document.getElementById('originalPreview');
+            const convertedPreview = document.getElementById('convertedPreview');
+            const originalInfo = document.getElementById('originalInfo');
+            const convertedInfo = document.getElementById('convertedInfo');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            let currentFile = null;
+            let convertedBlob = null;
+            
+            // Update compression value display
+            compressionLevel.addEventListener('input', function() {
+                compressionValue.textContent = this.value;
+            });
+            
+            // Handle drag and drop events
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('active');
+            });
+            
+            uploadArea.addEventListener('dragleave', function() {
+                this.classList.remove('active');
+            });
+            
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('active');
+                
+                if (e.dataTransfer.files.length) {
+                    fileInput.files = e.dataTransfer.files;
+                    handleFileSelection(e.dataTransfer.files[0]);
+                }
+            });
+            
+            // Handle file selection via click
+            uploadArea.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.addEventListener('change', function() {
+                if (this.files.length) {
+                    handleFileSelection(this.files[0]);
+                }
+            });
+            
+            // Handle file selection
+            function handleFileSelection(file) {
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file (JPEG, PNG, WEBP, etc.)');
+                    return;
+                }
+                
+                currentFile = file;
+                convertBtn.disabled = false;
+                
+                // Display original image preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalPreview.src = e.target.result;
+                    
+                    // Display original file info
+                    originalInfo.innerHTML = `
+                        <strong>Name:</strong> ${file.name}<br>
+                        <strong>Type:</strong> ${file.type}<br>
+                        <strong>Size:</strong> ${formatFileSize(file.size)}<br>
+                        <strong>Dimensions:</strong> Loading...
+                    `;
+                    
+                    // Get image dimensions
+                    const img = new Image();
+                    img.onload = function() {
+                        originalInfo.innerHTML = `
+                            <strong>Name:</strong> ${file.name}<br>
+                            <strong>Type:</strong> ${file.type}<br>
+                            <strong>Size:</strong> ${formatFileSize(file.size)}<br>
+                            <strong>Dimensions:</strong> ${this.width} × ${this.height} pixels
+                        `;
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                
+                // Hide previous results
+                resultContainer.style.display = 'none';
+            }
+            
+            // Convert button click handler
+            convertBtn.addEventListener('click', function() {
+                if (!currentFile) return;
+                
+                spinner.style.display = 'block';
+                convertBtn.disabled = true;
+                
+                // Simulate conversion process (in a real app, you would do actual image processing)
+                setTimeout(function() {
+                    processImage();
+                    spinner.style.display = 'none';
+                    convertBtn.disabled = false;
+                }, 1000);
+            });
+            
+            // Simulate image processing
+            function processImage() {
+                if (!currentFile) return;
+                
+                // In a real implementation, you would use the Canvas API or a library like compressor.js
+                // to actually convert and compress the image. This is just a simulation.
+                
+                const quality = parseInt(compressionLevel.value) / 100;
+                const format = outputFormat.value;
+                
+                // For demo purposes, we'll just display the original image as the "converted" one
+                // In a real app, you would actually convert and compress the image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    convertedPreview.src = e.target.result;
+                    
+                    // Simulate file size reduction based on quality
+                    const originalSize = currentFile.size;
+                    const newSize = Math.max(originalSize * quality, originalSize * 0.1); // At least 10% of original
+                    
+                    convertedInfo.innerHTML = `
+                        <strong>Format:</strong> ${format.toUpperCase()}<br>
+                        <strong>Quality:</strong> ${compressionLevel.value}%<br>
+                        <strong>Size:</strong> ${formatFileSize(newSize)}<br>
+                        <strong>Reduction:</strong> ${Math.round((1 - newSize/originalSize) * 100)}%
+                    `;
+                    
+                    // Create a download blob (in real app, this would be the actual converted image)
+                    convertedBlob = dataURItoBlob(e.target.result);
+                    
+                    // Show results
+                    resultContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(currentFile);
+            }
+            
+            // Download button click handler
+            downloadBtn.addEventListener('click', function() {
+                if (!convertedBlob) return;
+                
+                const format = outputFormat.value;
+                const fileName = currentFile.name.replace(/\.[^/.]+$/, "") + '.' + format;
+                
+                const url = URL.createObjectURL(convertedBlob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+            
+            // Helper function to format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Helper function to convert data URI to blob
+            function dataURItoBlob(dataURI) {
+                // Convert base64 to raw binary data held in a string
+                const byteString = atob(dataURI.split(',')[1]);
+                
+                // Separate out the mime component
+                const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                
+                // Write the bytes of the string to an ArrayBuffer
+                const arrayBuffer = new ArrayBuffer(byteString.length);
+                const uint8Array = new Uint8Array(arrayBuffer);
+                for (let i = 0; i < byteString.length; i++) {
+                    uint8Array[i] = byteString.charCodeAt(i);
+                }
+                
+                return new Blob([arrayBuffer], { type: mimeString });
+            }
+        });
+    </script>
 </body>
 </html>
